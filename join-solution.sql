@@ -6,10 +6,12 @@ FROM customers
 
 --Get all orders and their line items (orders, quantity and product).
 
-SELECT *
+SELECT orders.id, line_items.quantity, products.description
 FROM line_items
     JOIN orders ON line_items.order_id = orders.id
-    JOIN products ON line_items.product_id = products.id;
+    JOIN products ON line_items.product_id = products.id
+GROUP BY orders.id, line_items.quantity, products.description
+ORDER BY orders.id ASC;
 
 --Which warehouses have cheetos?
 
