@@ -57,7 +57,12 @@ WHERE products.description = 'diet pepsi';
 
 --How much was the total cost for each order?
 
-
+SELECT (SUM(line_items.quantity * products.unit_price)) as "total_cost_per_order", line_items.order_id as "orders"
+FROM line_items
+    JOIN products ON products.id = line_items.product_id
+    JOIN orders ON orders.id = line_items.order_id
+GROUP BY line_items.order_id
+ORDER BY line_items.order_id ASC;
 
 --How much has each customer spent in total?
 
